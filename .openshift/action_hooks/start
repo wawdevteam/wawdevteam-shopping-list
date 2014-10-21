@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export PATH=$OPENSHIFT_DATA_DIR/java/bin:$PATH
+export JAVA_HOME=$OPENSHIFT_DATA_DIR/java/

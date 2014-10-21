@@ -4,7 +4,7 @@
     <groupId>wwateam</groupId>
     <artifactId>wawdevteam-shopping-list</artifactId>
     <packaging>war</packaging>
-    <version>1.0</version>
+    <version>0.0.1</version>
     <name>wawdevteam-shopping-list</name>
 
     <!-- Spring Boot Support -->
@@ -15,7 +15,7 @@
     </parent>
 
     <properties>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
         <lombok.version>1.14.2</lombok.version>
     </properties>
 
@@ -118,6 +118,10 @@
                 'webapps' folder. -->
             <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
             <id>openshift</id>
+			<properties>
+                <maven.compiler.executable>${env.OPENSHIFT_DATA_DIR}java/bin/javac</maven.compiler.executable>
+                <maven.compiler.fork>true</maven.compiler.fork>
+            </properties>
             <build>
                 <finalName>wwateam</finalName>
                 <plugins>
