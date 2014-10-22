@@ -1,9 +1,0 @@
-#!/bin/bash
-
-#Java
-export JAVA_HOME=$OPENSHIFT_DATA_DIR/java
-
-#Maven
-export M2_HOME=/etc/alternatives/maven-3.0
-
-export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
