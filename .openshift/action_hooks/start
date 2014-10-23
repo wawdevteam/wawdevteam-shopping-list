@@ -1,9 +1,11 @@
 #!/bin/bash
 
-echo JAVA_HOME: $JAVA_HOME
-echo PATH: $PATH
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-echo `java -version`
+set -x
+
+export JAVA_HOME=${OPENSHIFT_DATA_DIR}java
+export PATH=${JAVA_HOME}/bin:$PATH
 
 cd $OPENSHIFT_REPO_DIR
-nohup java -jar target/*.jar --server.port=${OPENSHIFT_DIY_PORT} --server.address=${OPENSHIFT_DIY_IP} &
+nohup java -Xms384m -Xmx412m -jar target/*.jar --server.port=${OPENSHIFT_DIY_PORT} --server.address=${OPENSHIFT_DIY_IP} --spring.profiles.active=openshift &

@@ -1,17 +1,12 @@
 #!/bin/bash
+
+set -x
+
 cd $OPENSHIFT_REPO_DIR
 
+export MAVEN_OPTS="-Xms384m -Xmx412m"
+export M2=${OPENSHIFT_DATA_DIR}maven/bin
 export JAVA_HOME=${OPENSHIFT_DATA_DIR}java
+export PATH=${JAVA_HOME}/bin:${M2}:$PATH
 
-echo JAVA_HOME: $JAVA_HOME
-
-export M2_HOME=/etc/alternatives/maven-3.0
-
-echo MAVEN_REPO: $M2_HOME
-
-export PATH=${JAVA_HOME}/bin:${M2_HOME}/bin:$PATH
-
-echo PATH: $PATH
-
-cd $OPENSHIFT_REPO_DIR
-mvn package -s .openshift/settings.xml -DskipTests=true
+mvn -s .openshift/settings.xml clean install
