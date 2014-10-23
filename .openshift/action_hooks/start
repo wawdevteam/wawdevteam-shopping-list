@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export JAVA_HOME=${OPENSHIFT_DATA_DIR}java
+export PATH=${JAVA_HOME}/bin:$PATH
+
 echo JAVA_HOME: $JAVA_HOME
 echo PATH: $PATH
 
