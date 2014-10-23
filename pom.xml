@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>wawdevteam</groupId>
     <artifactId>wawdevteam-shopping-list</artifactId>
-    <packaging>war</packaging>
+    <!--<packaging>war</packaging>-->
     <version>0.0.1</version>
     <name>wawdevteam-shopping-list</name>
 
@@ -139,4 +139,13 @@
             </build>
         </profile>
     </profiles>
+	
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
