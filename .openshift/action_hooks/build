@@ -7,9 +7,9 @@ echo JAVA_HOME: $JAVA_HOME
 
 export M2_HOME=/etc/alternatives/maven-3.0
 
-echo $M2_HOME
+echo MAVEN_REPO: $M2_HOME
 
-export PATH=${JAVA_HOME}bin:${M2_HOME}/bin:$PATH
+export PATH=${JAVA_HOME}/bin:${M2_HOME}/bin:$PATH
 
 echo PATH: $PATH
 
