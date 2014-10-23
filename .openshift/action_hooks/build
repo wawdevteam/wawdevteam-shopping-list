@@ -13,5 +13,5 @@ export PATH=${JAVA_HOME}/bin:${M2_HOME}/bin:$PATH
 
 echo PATH: $PATH
 
-mvn --global-settings .openshift/settings.xml --version
-mvn --global-settings .openshift/settings.xml clean package -Popenshift -DskipTests
+cd $OPENSHIFT_REPO_DIR
+mvn package -s .openshift/settings.xml -DskipTests=true
