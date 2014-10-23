@@ -15,11 +15,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-public class App extends SpringBootServletInitializer {
+public class App { //extends SpringBootServletInitializer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(App.class);
 
-	@Override
+	/*@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		super.onStartup(servletContext);
 		LOG.info("------TEST-----------");
@@ -28,7 +28,7 @@ public class App extends SpringBootServletInitializer {
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(App.class);
-	}
+	}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(App.class);
