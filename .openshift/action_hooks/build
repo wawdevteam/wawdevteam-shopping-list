@@ -2,9 +2,16 @@
 cd $OPENSHIFT_REPO_DIR
 
 export JAVA_HOME=${OPENSHIFT_DATA_DIR}java
+
+echo JAVA_HOME: $JAVA_HOME
+
 export M2_HOME=/etc/alternatives/maven-3.0
+
+echo $M2_HOME
+
 export PATH=${JAVA_HOME}bin:${M2_HOME}/bin:$PATH
 
-${OPENSHIFT_DATA_DIR}maven/bin/mvn --global-settings .openshift/settings.xml --version
-${OPENSHIFT_DATA_DIR}maven/bin/mvn --global-settings .openshift/settings.xml clean package -Popenshift -DskipTests
+echo PATH: $PATH
 
+mvn --global-settings .openshift/settings.xml --version
+mvn --global-settings .openshift/settings.xml clean package -Popenshift -DskipTests
