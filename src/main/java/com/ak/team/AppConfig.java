@@ -7,24 +7,18 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import scala.App;
+
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-public class App { // extends SpringBootServletInitializer {
+public class AppConfig {
 
 	private static final Logger LOG = LoggerFactory.getLogger(App.class);
 
-	/*
-	 * @Override public void onStartup(ServletContext servletContext) throws
-	 * ServletException { super.onStartup(servletContext);
-	 * LOG.info("------TEST-----------"); }
-	 * 
-	 * @Override protected SpringApplicationBuilder
-	 * configure(SpringApplicationBuilder application) { return
-	 * application.sources(App.class); }
-	 */
-
 	public static void main(String[] args) {
-		SpringApplication.run(App.class, args);
+		LOG.info("Starting Simple Shopping List application");
+
+		SpringApplication.run(AppConfig.class, args);
 	}
 }
