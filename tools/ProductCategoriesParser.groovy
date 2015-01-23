@@ -41,7 +41,6 @@ if(inputFile.exists()){
 
 			def json = new groovy.json.JsonBuilder()
 			json {
-				//			code categoryCode
 				name categoryName
 				lang langCode 
 				path categoryPath.collect { element -> element.trim() }.join(">>")
@@ -51,7 +50,7 @@ if(inputFile.exists()){
 		}
 	}
 }else{
-	println 'File ' + inputFile.absolutePath + 'doesn\'t exists'
+	throw new IllegalArgumentException('File: ' + inputFile.absolutePath + ' doesn\'t exists')
 }
 
 

@@ -18,5 +18,6 @@ public class AppConfig {
 		LOG.info("Starting Simple Shopping List application.");
 
 		SpringApplication.run(AppConfig.class, args);
+
 	}
 }
