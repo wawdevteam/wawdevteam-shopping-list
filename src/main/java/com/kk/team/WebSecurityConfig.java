@@ -12,6 +12,13 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.session.ExpiringSession;
+import org.springframework.session.MapSessionRepository;
+import org.springframework.session.SessionRepository;
+import org.springframework.session.web.http.HeaderHttpSessionStrategy;
+import org.springframework.session.web.http.HttpSessionStrategy;
+import org.springframework.session.web.http.SessionRepositoryFilter;
 
 @Configuration
 @EnableWebMvcSecurity
@@ -27,6 +34,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 			.authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated();
 
+//		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		
+		http.addFilterBefore(springSessionRepositoryFilter(sessionRepository())
+				, BasicAuthenticationFilter.class);
+		
 		http.httpBasic();
 		// @formatter:on
 	}
@@ -62,5 +74,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		authenticationProvider.setUserDetailsService(userDetailsServiceBean());
 
 		return authenticationProvider;
+	}
+
+	private int maxInactiveIntervalInSeconds = 3600;
+
+	@Bean
+	public SessionRepository<ExpiringSession> sessionRepository() {
+		MapSessionRepository sessionRepository = new MapSessionRepository();
+		sessionRepository.setDefaultMaxInactiveInterval(maxInactiveIntervalInSeconds);
+		return sessionRepository;
+	}
+
+	@Bean
+	public <S extends ExpiringSession> SessionRepositoryFilter<? extends ExpiringSession> springSessionRepositoryFilter(
+	        SessionRepository<S> sessionRepository) {
+
+		SessionRepositoryFilter<S> sessionRepositoryFilter = new SessionRepositoryFilter<S>(sessionRepository);
+		sessionRepositoryFilter.setHttpSessionStrategy(httpSessionStrategy());
+
+		return sessionRepositoryFilter;
+	}
+
+	@Bean
+	public HttpSessionStrategy httpSessionStrategy() {
+		return new HeaderHttpSessionStrategy();
 	}
 }
